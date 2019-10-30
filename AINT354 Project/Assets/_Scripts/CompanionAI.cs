@@ -5,20 +5,49 @@ using Pathfinding;
 
 public class CompanionAI : MonoBehaviour
 {
-    Pathfinding.AILerp script;
-    private void OnCollisionEnter2D(Collision2D col)
+    Pathfinding.AIDestinationSetter findMe;
+    Pathfinding.AILerp lerp;
+    GameObject kill;
+
+
+    private void Start()
     {
-        if(col.gameObject.tag == "Player Radar")
+        lerp = GetComponent<AILerp>();
+        findMe = GetComponent<AIDestinationSetter>();
+    }
+
+    void Update()
+    { 
+        if (kill == null || findMe.target == null)
         {
-            script.speed = 0;
+            findMe.target = GameObject.FindGameObjectWithTag("Player").transform;
         }
     }
 
-    private void OnCollisionExit2D(Collision2D col)
+    private void OnTriggerEnter2D(Collider2D col)
     {
         if(col.gameObject.tag == "Player Radar")
         {
-            script.speed = 3;
+            lerp.speed = 0;
+        }
+        else if (col.gameObject.tag == "Explore")
+        {
+            findMe.target = GameObject.FindGameObjectWithTag("Explore").transform;
+            kill = GameObject.FindGameObjectWithTag("Explore");
+            lerp.speed = 5;
+            Destroy(kill, 15);
+        }
+        else if (col.gameObject.tag == "Enemy")
+        {
+            findMe.target = GameObject.FindGameObjectWithTag("Enemy").transform;
+        }
+    }
+
+    private void OnTriggerExit2D(Collider2D col)
+    {
+        if(col.gameObject.tag == "Player Radar")
+        {
+            lerp.speed = 3;
         }
     }
 }
