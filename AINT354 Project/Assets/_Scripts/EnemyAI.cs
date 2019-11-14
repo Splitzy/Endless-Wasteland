@@ -11,7 +11,10 @@ public class EnemyAI : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        
+        if(target != null)
+        {
+            Movement();
+        }
     }
 
     private void OnTriggerEnter2D(Collider2D col)
@@ -19,7 +22,6 @@ public class EnemyAI : MonoBehaviour
         if (col.gameObject.tag == "Player")
         {
             target = GameObject.FindGameObjectWithTag("Player").transform;
-            Movement();
         }
 
     }
