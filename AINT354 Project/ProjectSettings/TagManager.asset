@@ -8,6 +8,7 @@ TagManager:
   - Explore
   - Enemy
   - Player Radar
+  - Collectable
   layers:
   - Default
   - TransparentFX
