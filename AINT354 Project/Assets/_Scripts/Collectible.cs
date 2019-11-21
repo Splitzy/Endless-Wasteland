@@ -4,18 +4,22 @@ using UnityEngine;
 
 public class Collectible : MonoBehaviour
 {
-    public int ammo = 0;
+    public int ammoRegen = 0;
     public int healthRegen = 0;
 
-    // Start is called before the first frame update
-    void Start()
+    void OnTriggerEnter2D(Collider2D col)
     {
-        
+        if (col.gameObject.tag == "Player")
+        {
+            PlayerHealth health = col.GetComponent<PlayerHealth>();
+            PlayerShoot ammo = col.GetComponent<PlayerShoot>();
+
+            health.currentHealth += healthRegen;
+
+            ammo.ammoCount += ammoRegen;
+
+            Destroy(gameObject);
+        }
     }
 
-    // Update is called once per frame
-    void Update()
-    {
-        
-    }
 }
