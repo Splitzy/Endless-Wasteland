@@ -6,11 +6,13 @@ public class EnemyHealth : MonoBehaviour
 {
     public int startingHealth = 100;
     public int currentHealth;
+    BoxCollider2D col;
 
     bool isDead;
 
     void Awake()
     {
+        col = GetComponent<BoxCollider2D>();
         currentHealth = startingHealth;
     }
 
@@ -38,6 +40,7 @@ public class EnemyHealth : MonoBehaviour
     void Death()
     {
         isDead = true;
-        Destroy(gameObject, 2f);
+        col.isTrigger = true;
+        Destroy(gameObject);
     }
 }
