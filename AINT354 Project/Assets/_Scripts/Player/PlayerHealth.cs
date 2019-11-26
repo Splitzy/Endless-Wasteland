@@ -7,7 +7,7 @@ public class PlayerHealth : MonoBehaviour
 {
     public int startingHealth = 100;
     public int currentHealth;
-    public Slider healthSlider;
+    public Text healthText;
     public Image damageImage;
     public float flashSpeed = 5f;
     public Color flashColor = new Color(1f, 0f, 0f, 0.1f);
@@ -18,6 +18,7 @@ public class PlayerHealth : MonoBehaviour
     void Awake()
     {
         currentHealth = startingHealth;
+        healthText.text = "" + currentHealth;
     }
 
     // Update is called once per frame
@@ -41,7 +42,7 @@ public class PlayerHealth : MonoBehaviour
 
         currentHealth -= amount;
 
-        healthSlider.value = currentHealth;
+        healthText.text = "" + currentHealth;
 
         if(currentHealth <= 0 && !isDead)
         {
