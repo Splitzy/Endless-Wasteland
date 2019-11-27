@@ -8,7 +8,7 @@ public class RangedEnemyAI : MonoBehaviour
     public Transform bulletSpawn;
     public GameObject bullet;
 
-    Transform target;
+    public Transform target;
     float timer;
 
     void Update()
@@ -18,19 +18,36 @@ public class RangedEnemyAI : MonoBehaviour
         if(target != null)
         {
             Look();
+
+            if (timer >= timeBetweenShot)
+            {
+                Fire();
+            }
         }
-        else if (target != null && timer >= timeBetweenShot)
-        {
-            Look();
-            Fire();
-        }
+
+
+
+        //else if (target != null && timer >= timeBetweenShot)
+        //{
+        //    Look();
+        //    Fire();
+        //}
     }
 
     private void OnTriggerEnter2D(Collider2D col)
     {
+
         if(col.gameObject.tag == "Player")
         {
-            target = GameObject.FindGameObjectWithTag("Player").transform;
+            target = col.transform;
+        }
+    }
+
+    private void OnTriggerExit2D(Collider2D collision)
+    {
+        if (collision.gameObject.tag == "Player")
+        {
+            target = null;
         }
     }
 
@@ -44,5 +61,6 @@ public class RangedEnemyAI : MonoBehaviour
     {
         timer = 0f;
         Instantiate(bullet, bulletSpawn.position, bulletSpawn.rotation);
+        Debug.Log("fire!");
     }
 }
