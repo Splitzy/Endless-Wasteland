@@ -9,6 +9,7 @@ TagManager:
   - Enemy
   - Player Radar
   - Collectable
+  - Hitbox
   layers:
   - Default
   - TransparentFX
@@ -18,16 +19,16 @@ TagManager:
   - UI
   - 
   - 
-  - 
-  - 
-  - 
-  - 
-  - 
-  - 
-  - 
-  - 
-  - 
-  - 
+  - Player Health
+  - Enemy Health
+  - Player Bullet
+  - Enemy Bullet
+  - Enemy Radar
+  - Dog Radar
+  - Dog
+  - Collectible
+  - Ground
+  - Explore Radar
   - 
   - 
   - 
