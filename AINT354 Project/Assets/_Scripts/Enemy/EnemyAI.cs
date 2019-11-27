@@ -5,8 +5,9 @@ using UnityEngine.AI;
 
 public class EnemyAI : MonoBehaviour
 {
-    Transform target;
     public float speed = 3f;
+
+    Transform target;
 
     // Update is called once per frame
     void Update()
@@ -36,4 +37,5 @@ public class EnemyAI : MonoBehaviour
             transform.Translate(new Vector3(speed * Time.deltaTime, 0, 0));
         }
     }
+
 }
