@@ -13,7 +13,7 @@ GameObject:
   - component: {fileID: 8798483595072523687}
   - component: {fileID: 6319540417804597865}
   - component: {fileID: 8001166443334688643}
-  m_Layer: 0
+  m_Layer: 11
   m_Name: EnemyBullet
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -28,7 +28,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 3009094444675992987}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -0.697, y: -0.003, z: -5.3494196}
+  m_LocalPosition: {x: -0.697, y: -0.003, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
@@ -117,7 +117,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   speed: 10
-  bulletDMG: 20
+  bulletDMG: 15
   rb: {fileID: 8798483595072523687}
 --- !u!58 &8001166443334688643
 CircleCollider2D:

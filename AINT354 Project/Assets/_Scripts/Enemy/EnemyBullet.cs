@@ -24,14 +24,14 @@ public class EnemyBullet : MonoBehaviour
         if (player != null)
         {
             player.TakeDamage(bulletDMG);
-            Destroy(gameObject);
+            
         }
         else if (companion != null)
         {
             companion.TakeDamage(bulletDMG);
-            Destroy(gameObject);
+            //Destroy(gameObject);
         }
 
-
+        Destroy(gameObject);
     }
 }

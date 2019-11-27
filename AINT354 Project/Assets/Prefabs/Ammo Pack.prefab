@@ -12,7 +12,7 @@ GameObject:
   - component: {fileID: 2706515611094032675}
   - component: {fileID: 1604057545193946792}
   - component: {fileID: 4815506215146718992}
-  m_Layer: 0
+  m_Layer: 15
   m_Name: Ammo Pack
   m_TagString: Collectable
   m_Icon: {fileID: 0}

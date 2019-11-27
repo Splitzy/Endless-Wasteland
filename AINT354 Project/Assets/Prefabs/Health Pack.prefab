@@ -12,7 +12,7 @@ GameObject:
   - component: {fileID: 7288362505828251827}
   - component: {fileID: 3702276818682378085}
   - component: {fileID: 7163714185727570534}
-  m_Layer: 0
+  m_Layer: 15
   m_Name: Health Pack
   m_TagString: Collectable
   m_Icon: {fileID: 0}
@@ -120,5 +120,5 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b124705ba3152c845a575647c52403fc, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  ammo: 0
+  ammoRegen: 0
   healthRegen: 15
