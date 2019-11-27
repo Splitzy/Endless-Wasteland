@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class Collectible : MonoBehaviour
 {
@@ -15,10 +16,12 @@ public class Collectible : MonoBehaviour
             PlayerShoot ammo = col.GetComponent<PlayerShoot>();
 
             health.currentHealth += healthRegen;
-
             ammo.ammoCount += ammoRegen;
 
-            Destroy(gameObject);
+            health.healthText.text = "" + health.currentHealth;
+
+            
+            Destroy(gameObject);    
         }
     }
 
