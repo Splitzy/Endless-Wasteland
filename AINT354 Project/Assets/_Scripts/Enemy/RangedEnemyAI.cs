@@ -61,6 +61,5 @@ public class RangedEnemyAI : MonoBehaviour
     {
         timer = 0f;
         Instantiate(bullet, bulletSpawn.position, bulletSpawn.rotation);
-        Debug.Log("fire!");
     }
 }
