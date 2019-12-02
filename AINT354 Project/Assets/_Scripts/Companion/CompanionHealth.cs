@@ -7,8 +7,8 @@ public class CompanionHealth : MonoBehaviour
     public int startingHealth = 100;
     public int currentHealth;
     public int regen = 5;
+    public bool isLimping;
     BoxCollider2D col;
-    bool isLimping;
     bool isRegen;
 
     void Awake()
