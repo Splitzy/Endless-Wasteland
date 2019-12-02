@@ -3,48 +3,68 @@ using System.Collections.Generic;
 using UnityEngine;
 using Pathfinding;
 
+public enum DogState { DEFAULT, ALERT, ATTACK, SEARCH, FETCH }
+
 public class CompanionAI : MonoBehaviour
 {
     Pathfinding.AIDestinationSetter findMe;
     Pathfinding.AILerp lerp;
     GameObject kill, player;
-    bool isAttacking, isAlert, isSearching, isFetching, isDefault = false;
-
+    DogState state;
 
     void Start()
     {
         lerp = GetComponent<AILerp>();
         findMe = GetComponent<AIDestinationSetter>();
-        isDefault = true;
+        state = DogState.DEFAULT;
         player = GameObject.FindGameObjectWithTag("Player");
         findMe.target = player.transform;
     }
 
     void Update()
     { 
-        if (kill == null)
+        if (findMe.target == null)
         {
-            DefaultState();
             //Debug.Log("I am at Default! Woof!");
+            state = DogState.DEFAULT;
+            findMe.target = player.transform;
         }
-        else if (findMe.target == null)
+
+        if (Input.GetKeyDown(KeyCode.Alpha1))
         {
-            DefaultState();
+            if(state != DogState.DEFAULT)
+            {
+                return;
+            }
+            else
+            {
+                state = DogState.ALERT;
+                Debug.Log("alert");
+            }
         }
-        else if (Input.GetKeyDown(KeyCode.Alpha1) && isDefault)
+        else if (Input.GetKeyDown(KeyCode.Alpha2))
         {
-            isAlert = true;
-            Debug.Log("I am angry! Bark!");
+            if (state != DogState.DEFAULT)
+            {
+                return;
+            }
+            else
+            {
+                state = DogState.SEARCH;
+                Debug.Log("search");
+            }
         }
-        else if (Input.GetKeyDown(KeyCode.Alpha2) && isDefault)
+        else if (Input.GetKeyDown(KeyCode.Alpha3))
         {
-            isSearching = true;
-            Debug.Log("I smell something! Awoo!");
-        }
-        else if (Input.GetKeyDown(KeyCode.Alpha3) && isDefault)
-        {
-            isFetching = true;
-            Debug.Log("Must bring master treats! Woof!");
+            if (state != DogState.DEFAULT)
+            {
+                return;
+            }
+            else
+            {
+                state = DogState.FETCH;
+                Debug.Log("fetch");
+            }
         }
     }
 
@@ -54,21 +74,44 @@ public class CompanionAI : MonoBehaviour
         {
             lerp.speed = 0;
         }
-        else if (col.gameObject.tag == "Explore" && isSearching)
+        else if (col.gameObject.tag == "Explore")
         {
-            findMe.target = GameObject.FindGameObjectWithTag("Explore").transform;
-            kill = GameObject.FindGameObjectWithTag("Explore");
-            lerp.speed = 5;
-            Destroy(kill, 15);
+            if(state != DogState.SEARCH)
+            {
+                return;
+            }
+            else
+            {
+                findMe.target = GameObject.FindGameObjectWithTag("Explore").transform;
+                kill = GameObject.FindGameObjectWithTag("Explore");
+                lerp.speed = 5;
+                Destroy(kill, 15);
+            }
         }
-        else if (col.gameObject.tag == "Enemy" && isAlert)
+        else if (col.gameObject.tag == "Enemy")
         {
-            AttackState();
-        }
-        else if (col.gameObject.tag == "Collectible" && isFetching)
+            if (state != DogState.ALERT)
+            {
+                return;
+            }
+            else
+            {
+                state = DogState.ATTACK;
+                findMe.target = GameObject.FindGameObjectWithTag("Enemy").transform;
+            }
+        }    
+        else if (col.gameObject.tag == "Collectible")
         {
-            findMe.target = GameObject.FindGameObjectWithTag("Collectible").transform;
-
+            if(state != DogState.FETCH)
+            {
+                return;
+            }
+            else
+            {
+                findMe.target = GameObject.FindGameObjectWithTag("Collectible").transform;
+                Debug.Log("attack");
+            }
+            
         }
     }
 
@@ -80,19 +123,5 @@ public class CompanionAI : MonoBehaviour
         }
     }
 
-    void AttackState()
-    {
-        isAttacking = true;
-        findMe.target = GameObject.FindGameObjectWithTag("Enemy").transform;
-    }
 
-    void DefaultState()
-    {
-        findMe.target = player.transform;
-        isAttacking = false;
-        isFetching = false;
-        isSearching = false;
-        isAlert = false;
-        isDefault = true;
-    }
 }
