@@ -11,6 +11,7 @@ public class PlayerHealth : MonoBehaviour
     public Image damageImage;
     public float flashSpeed = 5f;
     public Color flashColor = new Color(1f, 0f, 0f, 0.1f);
+    public GameObject GameOver;
 
     bool isDead;
     bool damaged;
@@ -46,6 +47,8 @@ public class PlayerHealth : MonoBehaviour
 
         if(currentHealth <= 0 && !isDead)
         {
+            currentHealth = 0;
+            healthText.text = "" + currentHealth;
             Death();
         }
     }
@@ -53,5 +56,12 @@ public class PlayerHealth : MonoBehaviour
     void Death()
     {
         isDead = true;
+
+        GameOver.SetActive(true);
+
+        gameObject.GetComponent<PlayerMovement>().enabled = false;
+        gameObject.GetComponent<PlayerShoot>().enabled = false;
+        gameObject.GetComponent<FaceMouse>().enabled = false;
+        gameObject.GetComponent<Collider2D>().enabled = false;
     }
 }
