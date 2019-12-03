@@ -6,10 +6,13 @@ public class EnemyHealth : MonoBehaviour
 {
     public int startingHealth = 100;
     public int currentHealth;
+    public float flashSpeed;
     public GameObject healthPack, ammoPack;
     BoxCollider2D col;
+    Color flashColor = new Color(1f, 0f, 0f, 0.5f);
 
     bool isDead;
+    bool damaged;
     float randomNum = 0;
 
     void Awake()
@@ -21,7 +24,16 @@ public class EnemyHealth : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        
+        if (damaged)
+        {
+            gameObject.GetComponent<SpriteRenderer>().color = flashColor;
+        }
+        else
+        {
+            gameObject.GetComponent<SpriteRenderer>().color = Color.Lerp(gameObject.GetComponent<SpriteRenderer>().color, Color.white, flashSpeed * Time.deltaTime);
+        }
+
+        damaged = false;
     }
 
     public void TakeDamage(int amount)
@@ -32,6 +44,8 @@ public class EnemyHealth : MonoBehaviour
         }
 
         currentHealth -= amount;
+
+        damaged = true;
 
         if(currentHealth <=0)
         {
