@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using Pathfinding;
 
 public class CompanionHealth : MonoBehaviour
 {
@@ -27,6 +28,7 @@ public class CompanionHealth : MonoBehaviour
 
         isLimping = false;
         col.isTrigger = false;
+        gameObject.GetComponent<AILerp>().speed = 3;
     }
 
     public void TakeDamage(int amount)
@@ -48,6 +50,7 @@ public class CompanionHealth : MonoBehaviour
     {
         isLimping = true;
         col.isTrigger = true;
+        gameObject.GetComponent<AILerp>().speed = 1.5f;
     }
 
     private IEnumerator RegenHealth()

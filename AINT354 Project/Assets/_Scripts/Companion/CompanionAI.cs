@@ -28,6 +28,7 @@ public class CompanionAI : MonoBehaviour
             //Debug.Log("I am at Default! Woof!");
             state = DogState.DEFAULT;
             findMe.target = player.transform;
+            lerp.speed = 3;
         }
 
         if (Input.GetKeyDown(KeyCode.Alpha1))
@@ -98,6 +99,8 @@ public class CompanionAI : MonoBehaviour
             {
                 state = DogState.ATTACK;
                 findMe.target = GameObject.FindGameObjectWithTag("Enemy").transform;
+                lerp.speed = 5;
+                Debug.Log("attack");
             }
         }    
         else if (col.gameObject.tag == "Collectible")
@@ -109,7 +112,7 @@ public class CompanionAI : MonoBehaviour
             else
             {
                 findMe.target = GameObject.FindGameObjectWithTag("Collectible").transform;
-                Debug.Log("attack");
+                
             }
             
         }
