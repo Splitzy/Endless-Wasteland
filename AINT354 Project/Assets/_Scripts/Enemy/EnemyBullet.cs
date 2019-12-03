@@ -19,17 +19,10 @@ public class EnemyBullet : MonoBehaviour
     {
         PlayerHealth player = hitInfo.GetComponent<PlayerHealth>();
 
-        CompanionHealth companion = hitInfo.GetComponent<CompanionHealth>();
-
         if (player != null)
         {
             player.TakeDamage(bulletDMG);
             
-        }
-        else if (companion != null)
-        {
-            companion.TakeDamage(bulletDMG);
-            //Destroy(gameObject);
         }
 
         Destroy(gameObject);

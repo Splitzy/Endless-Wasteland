@@ -63,5 +63,6 @@ public class PlayerHealth : MonoBehaviour
         gameObject.GetComponent<PlayerShoot>().enabled = false;
         gameObject.GetComponent<FaceMouse>().enabled = false;
         gameObject.GetComponent<Collider2D>().enabled = false;
+        gameObject.GetComponent<Rigidbody2D>().velocity = new Vector2(0,0);
     }
 }
