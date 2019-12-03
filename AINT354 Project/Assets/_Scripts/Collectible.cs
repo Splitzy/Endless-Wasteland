@@ -15,13 +15,21 @@ public class Collectible : MonoBehaviour
             PlayerHealth health = col.GetComponent<PlayerHealth>();
             PlayerShoot ammo = col.GetComponent<PlayerShoot>();
 
-            health.currentHealth += healthRegen;
-            ammo.ammoCount += ammoRegen;
+            if(health.currentHealth != health.startingHealth)
+            {
+                health.currentHealth += healthRegen;
+                Destroy(gameObject);
+            }
 
-            health.healthText.text = "" + health.currentHealth;
 
+            if(ammo.ammoCount != ammo.maxAmmo)
+            {
+                ammo.ammoCount += ammoRegen;
+                Destroy(gameObject);
+            }
             
-            Destroy(gameObject);    
+            health.healthText.text = "" + health.currentHealth;       
+               
         }
     }
 
