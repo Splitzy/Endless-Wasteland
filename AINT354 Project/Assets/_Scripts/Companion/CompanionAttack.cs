@@ -9,24 +9,15 @@ public class CompanionAttack : MonoBehaviour
 
     GameObject target;
     EnemyHealth enemyHealth;
-    CompanionHealth dogHealth;
     bool enemyInRange;
     float timer;
-
-    // Start is called before the first frame update
-    void Awake()
-    {
-        target = GameObject.FindGameObjectWithTag("Companion");
-        dogHealth = target.GetComponent<CompanionHealth>();
-        enemyHealth = GetComponentInParent<EnemyHealth>();
-    }
 
     // Update is called once per frame
     void Update()
     {
         timer += Time.deltaTime;
 
-        if (timer >= timeBetweenAttack && enemyInRange && !dogHealth.isLimping)
+        if (timer >= timeBetweenAttack && enemyInRange)
         {
             Attack();
         }
@@ -34,17 +25,19 @@ public class CompanionAttack : MonoBehaviour
 
     private void OnTriggerEnter2D(Collider2D col)
     {
-        if (col.gameObject == target)
+        if (col.gameObject.tag == "Enemy")
         {
             enemyInRange = true;
+            enemyHealth = col.GetComponent<EnemyHealth>();
         }
     }
 
     private void OnTriggerExit2D(Collider2D col)
     {
-        if (col.gameObject == target)
+        if (col.gameObject.tag == "Enemy")
         {
             enemyInRange = false;
+            enemyHealth = null;
         }
     }
 

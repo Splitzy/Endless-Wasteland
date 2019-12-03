@@ -28,7 +28,6 @@ public class CompanionAI : MonoBehaviour
             //Debug.Log("I am at Default! Woof!");
             state = DogState.DEFAULT;
             findMe.target = player.transform;
-            lerp.speed = 3;
         }
 
         if (Input.GetKeyDown(KeyCode.Alpha1))
@@ -85,7 +84,6 @@ public class CompanionAI : MonoBehaviour
             {
                 findMe.target = GameObject.FindGameObjectWithTag("Explore").transform;
                 kill = GameObject.FindGameObjectWithTag("Explore");
-                lerp.speed = 5;
                 Destroy(kill, 15);
             }
         }
@@ -99,7 +97,6 @@ public class CompanionAI : MonoBehaviour
             {
                 state = DogState.ATTACK;
                 findMe.target = GameObject.FindGameObjectWithTag("Enemy").transform;
-                lerp.speed = 5;
                 Debug.Log("attack");
             }
         }    
