@@ -82,8 +82,8 @@ public class CompanionAI : MonoBehaviour
             }
             else
             {
-                findMe.target = GameObject.FindGameObjectWithTag("Explore").transform;
-                kill = GameObject.FindGameObjectWithTag("Explore");
+                findMe.target = col.gameObject.transform;
+                kill = col.gameObject;
                 Destroy(kill, 15);
             }
         }
@@ -96,11 +96,11 @@ public class CompanionAI : MonoBehaviour
             else
             {
                 state = DogState.ATTACK;
-                findMe.target = GameObject.FindGameObjectWithTag("Enemy").transform;
+                findMe.target = col.gameObject.transform;
                 Debug.Log("attack");
             }
         }    
-        else if (col.gameObject.tag == "Collectible")
+        else if (col.gameObject.tag == "Collectable")
         {
             if(state != DogState.FETCH)
             {
@@ -108,8 +108,7 @@ public class CompanionAI : MonoBehaviour
             }
             else
             {
-                findMe.target = GameObject.FindGameObjectWithTag("Collectible").transform;
-                
+                findMe.target = col.gameObject.transform;
             }
             
         }
