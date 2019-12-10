@@ -12,7 +12,9 @@ public class PlayerHealth : MonoBehaviour
     public float flashSpeed = 5f;
     public Color flashColor = new Color(1f, 0f, 0f, 0.1f);
     public GameObject GameOver;
+    public AudioClip clip;
 
+    AudioSource audio;
     bool isDead;
     bool damaged;
 
@@ -20,6 +22,7 @@ public class PlayerHealth : MonoBehaviour
     {
         currentHealth = startingHealth;
         healthText.text = "" + currentHealth;
+        audio = GetComponent<AudioSource>();
     }
 
     // Update is called once per frame
@@ -44,6 +47,8 @@ public class PlayerHealth : MonoBehaviour
         currentHealth -= amount;
 
         healthText.text = "" + currentHealth;
+
+        audio.PlayOneShot(clip, 0.7f);
 
         if(currentHealth <= 0 && !isDead)
         {

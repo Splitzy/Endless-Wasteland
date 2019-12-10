@@ -8,16 +8,19 @@ public class EnemyHealth : MonoBehaviour
     public int currentHealth;
     public float flashSpeed;
     public GameObject healthPack, ammoPack;
+    public AudioClip clip;
     BoxCollider2D col;
     Color flashColor = new Color(1f, 0f, 0f, 0.5f);
 
     bool isDead;
     bool damaged;
     float randomNum = 0;
+    AudioSource audio;
 
     void Awake()
     {
         col = GetComponent<BoxCollider2D>();
+        audio = GetComponent<AudioSource>();
         currentHealth = startingHealth;
     }
 
@@ -46,6 +49,8 @@ public class EnemyHealth : MonoBehaviour
         currentHealth -= amount;
 
         damaged = true;
+
+        audio.PlayOneShot(clip, 0.7f);
 
         if(currentHealth <=0)
         {

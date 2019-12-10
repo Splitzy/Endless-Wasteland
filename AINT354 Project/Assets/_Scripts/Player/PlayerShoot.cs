@@ -11,13 +11,17 @@ public class PlayerShoot : MonoBehaviour
     public int maxAmmo = 120;
     public int ammoCount;
     public Text ammoText;
+    public AudioClip clip;
+    public LineRenderer line;
 
+    AudioSource audio;
     float timer;
 
 
     void Awake()
     {
         ammoCount = 30;
+        audio = GetComponent<AudioSource>();
     }
 
     // Update is called once per frame
@@ -29,6 +33,10 @@ public class PlayerShoot : MonoBehaviour
         {
             Shoot();
         }
+        else if (Input.GetButtonDown("Fire2"))
+        {
+            StartCoroutine(DogHit());
+        }
 
         ammoText.text = "Ammo: " + ammoCount;
     }
@@ -38,5 +46,39 @@ public class PlayerShoot : MonoBehaviour
         ammoCount -= 1;
         timer = 0.0f;
         Instantiate(bullet, shootPoint.position, shootPoint.rotation);
+        audio.PlayOneShot(clip, 0.7f);
+    }
+
+    IEnumerator DogHit()
+    {
+        RaycastHit2D hitInfo = Physics2D.Raycast(shootPoint.position, shootPoint.right * 10);
+
+        if (hitInfo)
+        {
+            Debug.DrawRay(shootPoint.position, shootPoint.right * 10);
+
+            if(hitInfo.transform.tag == "Player")
+            {
+                
+            }
+            else
+            {
+                Debug.Log(hitInfo.transform.name);
+                line.SetPosition(0, shootPoint.position);
+                line.SetPosition(1, hitInfo.point);
+            }
+
+        }
+        else
+        {
+            line.SetPosition(0, shootPoint.position);
+            line.SetPosition(1, shootPoint.position + shootPoint.right * 100);
+        }
+
+        line.enabled = true;
+
+        yield return new WaitForSeconds(0.5f);
+
+        line.enabled = false;
     }
 }

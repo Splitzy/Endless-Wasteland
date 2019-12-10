@@ -7,9 +7,16 @@ public class RangedEnemyAI : MonoBehaviour
     public float timeBetweenShot = 0.75f;
     public Transform bulletSpawn;
     public GameObject bullet;
-
+    public AudioClip clip;
     public Transform target;
+
+    AudioSource audio;
     float timer;
+
+    private void Awake()
+    {
+        audio = GetComponent<AudioSource>();
+    }
 
     void Update()
     {
@@ -59,6 +66,7 @@ public class RangedEnemyAI : MonoBehaviour
 
     void Fire()
     {
+        audio.PlayOneShot(clip, 0.7f);
         timer = 0f;
         Instantiate(bullet, bulletSpawn.position, bulletSpawn.rotation);
     }
