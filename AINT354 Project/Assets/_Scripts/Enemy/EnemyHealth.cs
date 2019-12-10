@@ -9,6 +9,8 @@ public class EnemyHealth : MonoBehaviour
     public float flashSpeed;
     public GameObject healthPack, ammoPack;
     public AudioClip clip;
+    public ParticleSystem deathEffect;
+
     BoxCollider2D col;
     Color flashColor = new Color(1f, 0f, 0f, 0.5f);
 
@@ -60,10 +62,12 @@ public class EnemyHealth : MonoBehaviour
 
     void Death()
     {
+        Instantiate(deathEffect, transform.position, Quaternion.identity);
         isDead = true;
         col.isTrigger = true;
         DropItem();
-        Destroy(gameObject); 
+        Destroy(gameObject);
+        
     }
 
     void DropItem()
