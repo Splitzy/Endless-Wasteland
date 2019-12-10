@@ -33,10 +33,10 @@ public class PlayerShoot : MonoBehaviour
         {
             Shoot();
         }
-        else if (Input.GetButtonDown("Fire2"))
-        {
-            StartCoroutine(DogHit());
-        }
+        //else if (Input.GetButtonDown("Fire2"))
+        //{
+        //    StartCoroutine(DogHit());
+        //}
 
         ammoText.text = "Ammo: " + ammoCount;
     }
@@ -49,36 +49,36 @@ public class PlayerShoot : MonoBehaviour
         audio.PlayOneShot(clip, 0.7f);
     }
 
-    IEnumerator DogHit()
-    {
-        RaycastHit2D hitInfo = Physics2D.Raycast(shootPoint.position, shootPoint.right * 10);
+    //IEnumerator DogHit()
+    //{ 
+    //    RaycastHit2D hitInfo = Physics2D.Raycast(shootPoint.position, shootPoint.up, 10);
 
-        if (hitInfo)
-        {
-            Debug.DrawRay(shootPoint.position, shootPoint.right * 10);
+    //    if (hitInfo)
+    //    {
+    //        Debug.DrawRay(shootPoint.position, shootPoint.up * 10);
 
-            if(hitInfo.transform.tag == "Player")
-            {
+    //        if(hitInfo.transform.tag == "Player")
+    //        {
                 
-            }
-            else
-            {
-                Debug.Log(hitInfo.transform.name);
-                line.SetPosition(0, shootPoint.position);
-                line.SetPosition(1, hitInfo.point);
-            }
+    //        }
+    //        else
+    //        {
+    //            Debug.Log(hitInfo.transform.name);
+    //            line.SetPosition(0, shootPoint.position);
+    //            line.SetPosition(1, hitInfo.point);
+    //        }
 
-        }
-        else
-        {
-            line.SetPosition(0, shootPoint.position);
-            line.SetPosition(1, shootPoint.position + shootPoint.right * 100);
-        }
+    //    }
+    //    else
+    //    {
+    //        line.SetPosition(0, shootPoint.position);
+    //        line.SetPosition(1, shootPoint.position + shootPoint.up * 10);
+    //    }
 
-        line.enabled = true;
+    //    line.enabled = true;
 
-        yield return new WaitForSeconds(0.5f);
+    //    yield return new WaitForSeconds(0.5f);
 
-        line.enabled = false;
-    }
+    //    line.enabled = false;
+    //}
 }
