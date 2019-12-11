@@ -7,11 +7,15 @@ public class FaceMouse : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        Vector2 mousePosition =  Camera.main.ScreenToWorldPoint(Input.mousePosition + Vector3.forward * 10f);
+        if(!PauseMenu.isPaused)
+        {
+            Vector2 mousePosition = Camera.main.ScreenToWorldPoint(Input.mousePosition + Vector3.forward * 10f);
 
-        float angle = AngleBetweenTwoPoints(transform.position, mousePosition);
+            float angle = AngleBetweenTwoPoints(transform.position, mousePosition);
 
-        transform.rotation = Quaternion.Euler(new Vector3(0f, 0f, angle));
+            transform.rotation = Quaternion.Euler(new Vector3(0f, 0f, angle));
+        }
+
     }
 
     float AngleBetweenTwoPoints(Vector3 a, Vector3 b)

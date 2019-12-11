@@ -29,7 +29,7 @@ public class PlayerShoot : MonoBehaviour
     {
         timer += Time.deltaTime;
 
-        if(Input.GetButtonDown("Fire1") && timer >= timeToShoot && ammoCount != 0)
+        if(Input.GetButtonDown("Fire1") && timer >= timeToShoot && ammoCount != 0 && !PauseMenu.isPaused)
         {
             Shoot();
         }
