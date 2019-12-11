@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using Pathfinding;
 
-public enum DogState { DEFAULT, ALERT, ATTACK, SEARCH, FETCH }
+public enum DogState { DEFAULT, SEARCH, FETCH }
 
 public class CompanionAI : MonoBehaviour
 {
@@ -25,7 +25,6 @@ public class CompanionAI : MonoBehaviour
     { 
         if (findMe.target == null)
         {
-            //Debug.Log("I am at Default! Woof!");
             state = DogState.DEFAULT;
             findMe.target = player.transform;
         }
@@ -38,23 +37,11 @@ public class CompanionAI : MonoBehaviour
             }
             else
             {
-                state = DogState.ALERT;
-                Debug.Log("alert");
-            }
-        }
-        else if (Input.GetKeyDown(KeyCode.Alpha2))
-        {
-            if (state != DogState.DEFAULT)
-            {
-                return;
-            }
-            else
-            {
                 state = DogState.SEARCH;
                 Debug.Log("search");
             }
         }
-        else if (Input.GetKeyDown(KeyCode.Alpha3))
+        else if (Input.GetKeyDown(KeyCode.Alpha2))
         {
             if (state != DogState.DEFAULT)
             {
@@ -87,19 +74,6 @@ public class CompanionAI : MonoBehaviour
                 Destroy(kill, 15);
             }
         }
-        else if (col.gameObject.tag == "Enemy")
-        {
-            if (state != DogState.ALERT)
-            {
-                return;
-            }
-            else
-            {
-                state = DogState.ATTACK;
-                findMe.target = col.gameObject.transform;
-                Debug.Log("attack");
-            }
-        }    
         else if (col.gameObject.tag == "Collectable")
         {
             if(state != DogState.FETCH)

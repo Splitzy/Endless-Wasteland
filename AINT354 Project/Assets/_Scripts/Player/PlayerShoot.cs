@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
+using Pathfinding;
 
 public class PlayerShoot : MonoBehaviour
 {
@@ -13,13 +14,16 @@ public class PlayerShoot : MonoBehaviour
     public Text ammoText;
     public AudioClip clip;
     public LineRenderer line;
+    public GameObject dog;
 
     AudioSource audio;
     float timer;
+    AIDestinationSetter attack;
 
 
     void Awake()
     {
+        attack = dog.GetComponent<AIDestinationSetter>();
         ammoCount = 30;
         audio = GetComponent<AudioSource>();
     }
@@ -33,10 +37,10 @@ public class PlayerShoot : MonoBehaviour
         {
             Shoot();
         }
-        //else if (Input.GetButtonDown("Fire2"))
-        //{
-        //    StartCoroutine(DogHit());
-        //}
+        else if (Input.GetButtonDown("Fire2"))
+        {
+            StartCoroutine(DogHit());
+        }
 
         ammoText.text = "Ammo: " + ammoCount;
     }
@@ -49,36 +53,34 @@ public class PlayerShoot : MonoBehaviour
         audio.PlayOneShot(clip, 0.7f);
     }
 
-    //IEnumerator DogHit()
-    //{ 
-    //    RaycastHit2D hitInfo = Physics2D.Raycast(shootPoint.position, shootPoint.up, 10);
+    IEnumerator DogHit()
+    {
+        RaycastHit2D hitInfo = Physics2D.Raycast(shootPoint.position, shootPoint.up, 50f);
 
-    //    if (hitInfo)
-    //    {
-    //        Debug.DrawRay(shootPoint.position, shootPoint.up * 10);
+        if (hitInfo)
+        {
+            Debug.DrawRay(shootPoint.position, shootPoint.up * 10);
 
-    //        if(hitInfo.transform.tag == "Player")
-    //        {
-                
-    //        }
-    //        else
-    //        {
-    //            Debug.Log(hitInfo.transform.name);
-    //            line.SetPosition(0, shootPoint.position);
-    //            line.SetPosition(1, hitInfo.point);
-    //        }
+            if (hitInfo.transform.tag == "Enemy")
+            {
+                attack.target = hitInfo.transform;
+                line.SetPosition(0, shootPoint.position);
+                line.SetPosition(1, hitInfo.point);
+            }
 
-    //    }
-    //    else
-    //    {
-    //        line.SetPosition(0, shootPoint.position);
-    //        line.SetPosition(1, shootPoint.position + shootPoint.up * 10);
-    //    }
+            line.SetPosition(0, shootPoint.position);
+            line.SetPosition(1, hitInfo.point);
+        }
+        else
+        {
+            line.SetPosition(0, shootPoint.position);
+            line.SetPosition(1, shootPoint.position + shootPoint.up * 50f);
+        }
 
-    //    line.enabled = true;
+        line.enabled = true;
 
-    //    yield return new WaitForSeconds(0.5f);
+        yield return new WaitForSeconds(0.5f);
 
-    //    line.enabled = false;
-    //}
+        line.enabled = false;
+    }
 }
