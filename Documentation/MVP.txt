@@ -1,3 +1,0 @@
-Dog AI that follows you, goes to explore points and attacks enemies.
-A health system
-Item Drops (Ammo and Health) when enemies die

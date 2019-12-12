@@ -1,1 +1,0 @@
-Dog AI that does everything and also fetches items for you.
