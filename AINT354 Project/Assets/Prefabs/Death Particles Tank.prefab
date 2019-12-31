@@ -11,10 +11,10 @@ GameObject:
   - component: {fileID: 8641335251971029815}
   - component: {fileID: 8641335251971029814}
   - component: {fileID: 8641335251971029769}
-  - component: {fileID: 2043962120755059530}
+  - component: {fileID: 7863501039525030349}
   - component: {fileID: -4918174717474456138}
   m_Layer: 0
-  m_Name: Death Particles
+  m_Name: Death Particles Tank
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -4813,7 +4813,7 @@ ParticleSystemRenderer:
   m_Mesh2: {fileID: 0}
   m_Mesh3: {fileID: 0}
   m_MaskInteraction: 0
---- !u!114 &2043962120755059530
+--- !u!114 &7863501039525030349
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -4826,8 +4826,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   deathSounds:
-  - {fileID: 8300000, guid: d3bbbd8ebbfcb3747bd0a05ad59eccee, type: 3}
-  - {fileID: 8300000, guid: 6b61d952498c3e443b9eacd20b583af6, type: 3}
+  - {fileID: 8300000, guid: e977a4a200523024cbf865e500568af3, type: 3}
+  - {fileID: 8300000, guid: 9f4ec2491fe2ffb4db7a6032ce17309f, type: 3}
 --- !u!82 &-4918174717474456138
 AudioSource:
   m_ObjectHideFlags: 0

@@ -74,11 +74,11 @@ public class EnemyHealth : MonoBehaviour
     {
         randomNum = Random.Range(0.0f, 1.0f);
 
-        if (randomNum <= 0.25f)
+        if (randomNum <= 0.33f)
         {
             Instantiate(healthPack, this.transform.position, this.transform.rotation);
         }
-        else if (randomNum > 0.25f && randomNum <= 0.50f)
+        else if (randomNum > 0.33f && randomNum <= 0.66f)
         {
             Instantiate(ammoPack, this.transform.position, this.transform.rotation);
         }

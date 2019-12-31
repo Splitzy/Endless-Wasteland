@@ -167,7 +167,8 @@ MonoBehaviour:
   ammoPack: {fileID: 8932718940328149080, guid: 039f7c1817ccdd04b88c0175adb8959f,
     type: 3}
   clip: {fileID: 8300000, guid: b97c95680d744bf419ee1f4f43ffeda7, type: 3}
-  deathClip: {fileID: 8300000, guid: d3bbbd8ebbfcb3747bd0a05ad59eccee, type: 3}
+  deathEffect: {fileID: 8641335251971029814, guid: 423d578d538d8ad40a9be04dcef8b4d4,
+    type: 3}
 --- !u!82 &7784828109602694115
 AudioSource:
   m_ObjectHideFlags: 0
