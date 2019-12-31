@@ -92,7 +92,7 @@ public class CompanionAI : MonoBehaviour
     {
         if(col.gameObject.tag == "Player Radar")
         {
-            lerp.speed = 3;
+            lerp.speed = 5;
         }
     }
 
