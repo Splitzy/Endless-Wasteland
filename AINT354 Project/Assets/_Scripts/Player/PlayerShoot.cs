@@ -24,7 +24,7 @@ public class PlayerShoot : MonoBehaviour
     void Awake()
     {
         attack = dog.GetComponent<AIDestinationSetter>();
-        ammoCount = 30;
+        ammoCount = 20;
         audio = GetComponent<AudioSource>();
     }
 
